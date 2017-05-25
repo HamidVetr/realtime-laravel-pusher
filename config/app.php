@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Vinkla\Pusher\PusherServiceProvider::class,
 
         /*
          * Application Service Providers...

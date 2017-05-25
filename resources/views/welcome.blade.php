@@ -5,6 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+        <script>
+            Pusher.log = function(msg) {
+                console.log(msg);
+            };
+
+            var pusher = new Pusher("{{env("PUSHER_APP_KEY")}}", {cluster: 'ap2'});
+            var channel = pusher.subscribe('test-channel');
+            channel.bind('test-event', function(data) {
+                alert(data.text);
+            });
+        </script>
+
         <title>Laravel</title>
 
         <!-- Fonts -->

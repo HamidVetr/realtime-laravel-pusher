@@ -11,6 +11,9 @@
 |
 */
 
+use App\Events\TestEvent;
+use Illuminate\Support\Facades\App;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +21,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * pusher with bridge package
+ */
+
+Route::get('/bridge', function() {
+    $pusher = App::make('pusher');
+
+    $pusher->trigger( 'test-channel',
+        'test-event',
+        array('text' => 'Preparing the Pusher Laracon.eu workshop!'));
+
+    return view('welcome');
+});
+
+/**
+ * pusher with laravel events
+ */
+
+Route::get('/broadcast', function() {
+    event(new TestEvent('Broadcasting in Laravel using Pusher!'));
+
+    return view('welcome');
+});
