@@ -36,6 +36,9 @@ Route::get('/bridge', function() {
     return view('welcome');
 });
 
+Route::get('/notifications', 'NotificationController@getIndex');
+Route::post('/notifications/notify', 'NotificationController@postNotify');
+
 /**
  * pusher with laravel events
  */
